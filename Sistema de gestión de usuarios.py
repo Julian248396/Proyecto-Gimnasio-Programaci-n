@@ -188,12 +188,12 @@ def informacion_servicios_gimnasio():
         None.
     """
     print("  Servicios de PowerZone Gym:")
-    print("  - Zona de pesas")
-    print("  - Cardio rumba")
-    print("  - Spinning")
-    print("  - Crossfit")
-    print("  - Yoga")
-    print("  - Spa")
+    print("  - Zona de pesas (Lun-Vie 5am - 10pm)")
+    print("  - Cardio rumba (Lun-Mié-Vie 6pm)")
+    print("  - Spinning (Lun-Vie 6am y 7pm)")
+    print("  - Crossfit (Mar-Jue 5pm)")
+    print("  - Yoga (Sáb 8am)")
+    print("  - Spa (Lun-Sáb 10am - 8pm)")
 
 
 def main():
