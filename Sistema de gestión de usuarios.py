@@ -21,11 +21,16 @@ def registrar_usuario(usuarios_gimnasio):
     Retorna:
         None.
     """
-    cedula = input("  Cédula: ")
-    nombre = input("  Nombre: ")
+    cedula = input("  Cédula: ").strip()
+    
+    if cedula in usuarios_gimnasio:
+        print("Error ya existe un usuario registrado con esa cedula")
+        return
+    
+    nombre = input("  Nombre: ").strip()
     edad = int(input("  Edad: "))
-    telefono = input("  Teléfono: ")
-    membresia = input("  Membresía (Básica / Premium / VIP): ")
+    telefono = input("  Teléfono: ").strip()
+    membresia = input("  Membresía (Básica / Premium / VIP): ").lower().strip()
     mensualidad = int(input("  Mensualidad: "))
 
     usuarios_gimnasio[cedula] = {
@@ -72,7 +77,7 @@ def buscar_usuario(usuarios_gimnasio):
     Retorna:
         None.
     """
-    cedula = input("  Cédula a buscar: ")
+    cedula = input("  Cédula a buscar: ").strip()
 
     if cedula in usuarios_gimnasio:
         usuario = usuarios_gimnasio[cedula]
@@ -115,6 +120,10 @@ def actualizar_usuario(usuarios_gimnasio):
             usuarios_gimnasio[cedula]["mensualidad"] = int(input("  Nuevo precio: "))
         elif opcion == "4":
             usuarios_gimnasio[cedula]["activo"] = not usuarios_gimnasio[cedula]["activo"]
+        else:
+            print("Opcion Invalida")     
+            return
+        
         print("  Usuario actualizado.")
     else:
         print("  No se encontró un usuario con esa cédula.")
@@ -168,7 +177,9 @@ def estadisticas_usuarios(usuarios_gimnasio):
             activos = activos + 1
         else:
             inactivos = inactivos + 1
-
+    if total == 0:
+        print("No hay usuarios registrados ")
+        return
     promedio = suma_precios / total
 
     print("  Total registrados:", total)
@@ -312,3 +323,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
