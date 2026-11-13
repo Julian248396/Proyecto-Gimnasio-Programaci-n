@@ -317,7 +317,7 @@ def main():
                 print("Fin del programa.")
                 break
             case _:
-                print("OpciÃ³n no vÃ¡lida.")
+                print("Opcion no valida.")
 
 
 
