@@ -143,9 +143,9 @@ def actualizar_usuario(usuarios_gimnasio):
                 usuarios_gimnasio[cedula]["activo"] = True
             elif estado == "d":
                 usuarios_gimnasio[cedula]["activo"] = False
-            else:
-                print("  Opción inválida.")
-                return
+        else:
+            print("  Opción inválida.")
+            return
         
         print("  Usuario actualizado.")
     else:
