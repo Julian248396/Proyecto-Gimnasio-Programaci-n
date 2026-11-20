@@ -28,10 +28,15 @@ def registrar_usuario(usuarios_gimnasio):
         return
     
     nombre = input("  Nombre: ").strip()
-    edad = int(input("  Edad: "))
-    telefono = input("  Teléfono: ").strip()
-    membresia = input("  Membresía (Básica / Premium / VIP): ").lower().strip()
-    mensualidad = int(input("  Mensualidad: "))
+    
+    try:
+        edad = int(input("  Edad: "))
+        telefono = input("  Teléfono: ").strip()
+        membresia = input("  Membresía (Básica / Premium / VIP): ").strip().capitalize()
+        mensualidad = int(input("  Mensualidad: "))
+    except ValueError:
+        print("  Error: la edad y la mensualidad deben ser números enteros.")
+        return
 
     usuarios_gimnasio[cedula] = {
         "nombre": nombre,
@@ -55,6 +60,10 @@ def mostrar_usuarios(usuarios_gimnasio):
     Retorna:
         None.
     """
+    if len(usuarios_gimnasio) == 0:
+        print("  No hay usuarios registrados.")
+        return
+
     for cedula in usuarios_gimnasio:
         usuario = usuarios_gimnasio[cedula]
         print("  Cédula:", cedula)
@@ -103,26 +112,37 @@ def actualizar_usuario(usuarios_gimnasio):
     Retorna:
         None.
     """
-    cedula = input("  Cédula del usuario a actualizar: ")
+    cedula = input("  Cédula del usuario a actualizar: ").strip()
 
     if cedula in usuarios_gimnasio:
         print("  1. Teléfono")
         print("  2. Plan")
         print("  3. Precio")
         print("  4. Estado (activo/inactivo)")
-        opcion = input("  ¿Qué desea modificar?: ")
+        opcion = input("  ¿Qué desea modificar?: ").strip()
 
         if opcion == "1":
-            usuarios_gimnasio[cedula]["telefono"] = input("  Nuevo teléfono: ")
+            nuevo_telefono= input("  Nuevo teléfono: ").strip()
+            usuarios_gimnasio[cedula]["telefono"] 
         elif opcion == "2":
-            usuarios_gimnasio[cedula]["membresia"] = input("  Nuevo plan: ")
+            nuvo_plan= input("  Nuevo plan: ").strip().capitalize()
+            usuarios_gimnasio[cedula]["membresia"] 
         elif opcion == "3":
-            usuarios_gimnasio[cedula]["mensualidad"] = int(input("  Nuevo precio: "))
+            try:
+                nuevo_precio = int(input("  Nuevo precio: "))
+                usuarios_gimnasio[cedula]["mensualidad"]
+            except ValueError:
+                print("  Error: el precio debe ser un número entero.")
+                return
         elif opcion == "4":
-            usuarios_gimnasio[cedula]["activo"] = not usuarios_gimnasio[cedula]["activo"]
-        else:
-            print("Opcion Invalida")     
-            return
+            estado = input("  ¿Activar o desactivar? (a/d): ").strip().lower()
+            if estado == "a":
+                usuarios_gimnasio[cedula]["activo"] = True
+            elif estado == "d":
+                usuarios_gimnasio[cedula]["activo"] = False
+            else:
+                print("  Opción inválida.")
+                return
         
         print("  Usuario actualizado.")
     else:
@@ -140,10 +160,10 @@ def eliminar_usuario(usuarios_gimnasio):
     Retorna:
         None.
     """
-    cedula = input("  Cédula del usuario a eliminar: ")
+    cedula = input("  Cédula del usuario a eliminar: ").strip()
 
     if cedula in usuarios_gimnasio:
-        confirmacion = input("  ¿Seguro que desea eliminarlo? (s/n): ")
+        confirmacion = input("  ¿Seguro que desea eliminarlo? (s/n): ").strip().lower()
         if confirmacion == "s":
             del usuarios_gimnasio[cedula]
             print("  Usuario eliminado.")
@@ -296,7 +316,7 @@ def main():
         print("  7. Información de servicios del gimnasio")
         print("  8. Salir")
         print("=" * 45)
-        opcion = input("  Seleccione: ")
+        opcion = input("  Seleccione: ").strip()
         
         match opcion:
             case "1":
@@ -320,7 +340,5 @@ def main():
                 print("Opcion no valida.")
 
 
-
 if __name__ == "__main__":
     main()
-
