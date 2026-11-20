@@ -33,6 +33,7 @@ def registrar_usuario(usuarios_gimnasio):
         edad = int(input("  Edad: "))
         telefono = input("  Teléfono: ").strip()
         membresia = input("  Membresía (Básica / Premium / VIP): ").strip().capitalize()
+        print("  Tarifas -> Básica: 60000 | Premium: 90000 | VIP: 120000")
         mensualidad = int(input("  Mensualidad: "))
     except ValueError:
         print("  Error: la edad y la mensualidad deben ser números enteros.")
@@ -123,14 +124,16 @@ def actualizar_usuario(usuarios_gimnasio):
 
         if opcion == "1":
             nuevo_telefono= input("  Nuevo teléfono: ").strip()
-            usuarios_gimnasio[cedula]["telefono"] 
+            usuarios_gimnasio[cedula]["telefono"] = nuevo_telefono
         elif opcion == "2":
+            print("  Membresía (Básica / Premium / VIP): ")
             nuvo_plan= input("  Nuevo plan: ").strip().capitalize()
-            usuarios_gimnasio[cedula]["membresia"] 
+            usuarios_gimnasio[cedula]["membresia"] = nuevo_plan 
         elif opcion == "3":
             try:
+                print("  Tarifas -> Básica: 60000 | Premium: 90000 | VIP: 120000")
                 nuevo_precio = int(input("  Nuevo precio: "))
-                usuarios_gimnasio[cedula]["mensualidad"]
+                usuarios_gimnasio[cedula]["mensualidad"] = nuevo_precio
             except ValueError:
                 print("  Error: el precio debe ser un número entero.")
                 return
